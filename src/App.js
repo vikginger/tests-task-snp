@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { connect } from "react-redux";
+import { addUser } from './redux/actions/userActions.js';
 
-function App() {
+import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
+
+import {authRoutes, publicRoutes} from './routes.js'
+import {HOME_ROUTE} from './utils/constants.js';
+import './App.scss';
+
+function App(props) {
+
+  const user = props.user;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Switch>
+          {user.user.is_Auth && authRoutes.map(({path, Component}) =>
+            <Route key={path} path={path} component={Component} exact />
+          )}
+          {publicRoutes.map(({path, Component}) =>
+            <Route key={path} path={path} component={Component} exact />
+          )}
+          <Redirect to={HOME_ROUTE} />
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  }
+};
+
+const mapDispatchToProps = {
+  addUser
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
