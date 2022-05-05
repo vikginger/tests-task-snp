@@ -9,10 +9,14 @@ const initialState = {
   }
 }
 
-export const userReducer = (state = initialState, {type, payload}) => {
-  switch (type) {
+export const userReducer = (state = initialState, action) => {
+  switch (action.type) {
     case ActionTypes.ADD_USER:
-      return state;
+      const currentUser = action.payload;
+      return {
+        ...state,
+        user: currentUser
+      };
     default:
       return state;
   }

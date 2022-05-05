@@ -1,3 +1,7 @@
+label {
+  display: block;
+}
+
 .loginForm {
   color: blue;
 }
@@ -5,6 +9,7 @@
 .inputForm {
   display: block;
   margin-bottom: 20px;
+  margin-left: 10px;
 }
 
 .errorForm {

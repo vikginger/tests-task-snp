@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import 'bootstrap/dist/css/bootstrap.css';
+
 import { addUser } from './redux/actions/userActions.js';
 
 import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';

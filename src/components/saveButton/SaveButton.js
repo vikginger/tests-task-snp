@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./SaveButton.css";
 
@@ -8,7 +8,7 @@ function SaveButton(props) {
     <button
       type="button"
       name="button"
-      className='save-btn'
+      className='save-btn btn btn-primary'
     >
       Сохранить
     </button>
